@@ -10,7 +10,12 @@
     <link rel="icon" href="{% static 'images/gamepad.svg' %}">
 </head>
 <body>
+    {% include 'includes/navbar.html' %}
+
     <h1>This is the category site</h1>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam itaque ipsam explicabo commodi eius nesciunt. Porro corrupti omnis laboriosam quae ipsum, perspiciatis quia aliquam, hic eos architecto ipsam libero voluptatum.</p>
+
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

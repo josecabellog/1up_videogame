@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1UP videogames</title>
     <link rel="icon" href="{% static 'images/gamepad.svg' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <!-- Fuente retro gaming -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
-<body>
-    <h1>This is the title of the website</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio cupiditate error officia voluptatibus molestiae deleniti. Optio commodi aperiam officia maxime doloribus praesentium. Officia debitis explicabo, ea repellat saepe error non!</p>
-    <p>You can visit other sites here 👇🏻</p>
-    <a href="{% url 'about' %}">About</a>
-    <a href="{% url 'categories' %}">Categories</a>
-    <a href="{% url 'contact' %}">Contact</a>
+<body class="retro-theme">
+    {% include 'includes/navbar.html' %}
+
+    <main class="retro-container">
+        <h1 class="retro-title">1UP VIDE<wbr>OGAMES</h1>
+        <div class="retro-screen">
+            <p class="retro-text">Welcome to the ultimate retro gaming experience!</p>
+            <div class="pixel-corners"></div>
+        </div>
+    </main>
+    
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

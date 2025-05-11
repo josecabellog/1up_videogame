@@ -10,7 +10,11 @@
     <link rel="icon" href="{% static 'images/gamepad.svg' %}">
 </head>
 <body>
+    {% include 'includes/navbar.html' %}
+
     <h1>This is the about page</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, voluptate aspernatur consequatur debitis corrupti natus minima commodi quidem harum necessitatibus maxime corporis sint deleniti est, error molestias modi voluptas explicabo.</p>
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
