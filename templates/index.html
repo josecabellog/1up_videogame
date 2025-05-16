@@ -5,23 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1UP videogames</title>
-    <link rel="icon" href="{% static 'images/gamepad.svg' %}">
+    <link rel="icon" href="{% static 'images/1.png' %}">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <!-- Fuente retro gaming -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
+
 <body class="retro-theme">
     {% include 'includes/navbar.html' %}
 
     <main class="retro-container">
-        <h1 class="retro-title">1UP VIDE<wbr>OGAMES</h1>
+        {% block content %}
+        <!-- Default content if not overridden -->
+        <h1 class="retro-title">Welcome to the ultimate <br> gaming experience</h1>
         <div class="retro-screen">
-            <p class="retro-text">Welcome to the ultimate retro gaming experience!</p>
+            <p class="retro-text">Text here</p>
             <div class="pixel-corners"></div>
         </div>
+        {% endblock %}
     </main>
-    
-    {% block content %}
-    {% endblock %}
 </body>
 </html>

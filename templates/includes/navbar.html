@@ -1,26 +1,27 @@
+{% load static %}
 
 <style>
     nav {
         background-color: white;
         padding: 5px;
-        /* Remove align-content, it doesn't work for this purpose */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
-    
+    nav .logo {
+        align-self: center;
+    }
     nav ul {
         list-style: none;
         padding: 0;
         display: flex;
         gap: 1rem;
-        justify-content: flex-end; /* This moves items to the right */
-        margin-left: auto; /* Alternative method that also works */
     }
-    
     nav a {
         text-decoration: none;
         color: #0f0f23;
-        padding: 5px 10px; /* Add some padding for better click area */
+        padding: 5px 10px;
     }
-    
     nav a:hover {
         text-decoration: none;
         color: red;
@@ -28,6 +29,9 @@
 </style>
 
 <nav>
+    <div class="logo">
+        <img width="100px" src="{% static 'images/2.png' %}" alt="logo">
+    </div>
     <ul>
         <li><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'about' %}">About</a></li>

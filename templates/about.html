@@ -1,20 +1,155 @@
+{% extends "index.html" %}
+{% include 'includes/navbar.html' %}
 {% load static %}
 
+{% block content %}
+    <style>
+        /* Retro Team Styling */
+        .about_text {
+            text-align: center;
+            color: #00ff00;
+            text-shadow: 0 0 8px #ff00ff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>about</title>
-    <link rel="icon" href="{% static 'images/gamepad.svg' %}">
-</head>
-<body>
-    {% include 'includes/navbar.html' %}
+        .team-header {
+            color: #00ffff;
+            text-shadow: 3px 3px 0 #6a0dad;
+            margin: 2rem 0;
+            position: relative;
+            text-align: center;;
+        }
 
-    <h1>This is the about page</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, voluptate aspernatur consequatur debitis corrupti natus minima commodi quidem harum necessitatibus maxime corporis sint deleniti est, error molestias modi voluptas explicabo.</p>
-    {% block content %}
-    {% endblock %}
-</body>
-</html>
+        .team-header::after {
+            content: "";
+            display: block;
+            height: 4px;
+            background: linear-gradient(90deg, 
+            transparent 0%, 
+            #ff00ff 20%, 
+            #00ffff 50%, 
+            #ff00ff 80%, 
+            transparent 100%);
+            margin-top: 1rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .member-card {
+            background: rgba(15, 15, 15, 0.8);
+            border: 3px solid #6a0dad;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.4);
+            border-color: #00ffff;
+        }
+
+        .member-card::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px dashed #00ff00;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .member-card:hover::before {
+            opacity: 0.6;
+        }
+
+        .member-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border: 3px solid #00ffff;
+            margin: 0 auto 1rem;
+            display: block;
+            image-rendering: pixelated;
+        }
+
+        .member-name {
+            color: #ff00ff;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            margin: 1rem 0 0.5rem;
+            text-align: center;
+        }
+
+        .member-bio {
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <h1 class="retro-title" style="color: #ff00ff;">About Us</h1>
+        <p class="about_text">
+            Since 2023, we've been fueling your gaming addiction with the rarest cartridges,<br>
+            the shiniest consoles, and enough nostalgia to crash a Tamagotchi.<br>
+            Our mission? To keep the 8-bit flame alive!
+        </p>
+
+        <h2 class="team-header">MEET OUR TEAM</h2>
+
+        <div class="team-grid">
+            <!-- Member 1 -->
+            <div class="member-card">
+                <img src="{% static 'images/teacher.png' %}" alt="El Teacher" class="member-img">
+                <h3 class="member-name">EL TEACHER</h3>
+                <p class="member-bio">
+                    The dungeon master of code. When he's not debugging reality, 
+                    he's speedrunning curriculum development. Known for his 
+                    legendary "while True: learn()" workshops.
+                </p>
+            </div>
+
+            <!-- Member 2 -->
+            <div class="member-card">
+                <img src="{% static 'images/team/carlimar.png' %}" alt="Carlimar" class="member-img">
+                <h3 class="member-name">CARLIMAR</h3>
+                <p class="member-bio">
+                    Pixel art sorcerer and sound effect enthusiast. Can identify 
+                    any NES game by its soundtrack. Currently holds the world 
+                    record for most consecutive hours playing Tetris (allegedly).
+                </p>
+            </div>
+
+            <!-- Member 3 -->
+            <div class="member-card">
+                <img src="{% static 'images/mark.png' %}" alt="Mark" class="member-img">
+                <h3 class="member-name">MARK</h3>
+                <p class="member-bio">
+                    The hardware whisperer. Once repaired a Game Boy by staring 
+                    at it intensely. His soldering iron is basically a magic wand.
+                    Secretly believes all problems can be solved with more RAM.
+                </p>
+            </div>
+        </div>
+
+        <div class="pixel-corners"></div>
+    </div>
+{% endblock %}
