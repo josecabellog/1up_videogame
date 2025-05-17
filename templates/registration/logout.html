@@ -1,0 +1,115 @@
+
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+<div class="retro-screen" style="max-width: 500px; margin: 2rem auto;">
+    <h2 class="retro-title" style="color: #00ffff; text-shadow: 3px 3px 0 #6a0dad;">PLAYER LOGIN</h2>
+    
+    <form method="post" class="pixel-form">
+        {% csrf_token %}
+        
+        <div class="pixel-input-group">
+            <label class="pixel-label">USERNAME:</label>
+            <input type="text" name="username" class="pixel-input" required>
+            <div class="pixel-corners-sm"></div>
+        </div>
+        
+        <div class="pixel-input-group">
+            <label class="pixel-label">PASSWORD:</label>
+            <input type="password" name="password" class="pixel-input" required>
+            <div class="pixel-corners-sm"></div>
+        </div>
+        
+        <button type="submit" class="retro-btn" style="margin-top: 1.5rem;">
+            <span class="pixel-text">START GAME</span>
+        </button>
+    </form>
+    
+    <div class="pixel-divider" style="margin: 2rem 0;"></div>
+    
+    <p class="retro-text" style="text-align: center;">
+        NEW PLAYER? <a href="{% url 'register' %}" class="pixel-link">CREATE ACCOUNT</a>
+    </p>
+    
+    <div class="pixel-corners"></div>
+</div>
+
+<style>
+    .pixel-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .pixel-input-group {
+        position: relative;
+    }
+    
+    .pixel-label {
+        display: block;
+        color: #ff00ff;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 0.7rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 0 #000;
+    }
+    
+    .pixel-input {
+        width: 100%;
+        padding: 0.8rem;
+        background: #222;
+        border: 3px solid #6a0dad;
+        color: #00ff00;
+        font-family: 'Courier New', monospace;
+        outline: none;
+        transition: all 0.3s;
+    }
+    
+    .pixel-input:focus {
+        border-color: #00ffff;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+    
+    .retro-btn {
+        background: #6a0dad;
+        color: white;
+        border: none;
+        padding: 1rem;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 0.9rem;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+    
+    .retro-btn:hover {
+        background: #ff00ff;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 0, 255, 0.4);
+    }
+    
+    .pixel-link {
+        color: #00ffff;
+        text-decoration: none;
+        border-bottom: 2px dashed #ff00ff;
+        transition: all 0.3s;
+    }
+    
+    .pixel-link:hover {
+        color: #ff00ff;
+        text-shadow: 0 0 5px #00ffff;
+    }
+    
+    .pixel-divider {
+        height: 4px;
+        background: linear-gradient(90deg, 
+                    transparent 0%, 
+                    #ff00ff 20%, 
+                    #00ffff 50%, 
+                    #ff00ff 80%, 
+                    transparent 100%);
+    }
+</style>
+{% endblock %}
