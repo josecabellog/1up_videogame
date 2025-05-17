@@ -1,0 +1,105 @@
+
+{% extends "index.html" %}
+{% include 'includes/navbar.html' %}
+{% load static %}
+
+
+<style>
+    /* Add these to your existing index.css */
+
+.retro-articles {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.retro-article-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.retro-text-large {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+    color: #00ff00;
+    margin: 0;
+}
+
+.retro-text-small {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #00ff00;
+    margin: 0;
+}
+
+.retro-link {
+    text-decoration: none;
+    display: block;
+    padding: 20px;
+}
+
+.retro-btn {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #333;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    padding: 10px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.retro-btn:hover {
+    background-color: #00ff00;
+    color: #000;
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 15px #00ff00;
+}
+</style>
+
+
+{% block content %}
+<div class="retro-container">
+    <header class="retro-screen mb-8" style="position: relative;">
+        <h1 class="retro-title">Team Articles</h1>
+        <div class="pixel-corners"></div>
+        <a href="{% url 'article_create' %}" class="retro-btn" style="position: absolute; right: 20px; top: 20px;">
+            + New Article
+        </a>
+    </header>
+
+    <div class="retro-articles">
+        {% for post in posts %}
+        <article class="retro-screen hover-glow" style="margin-bottom: 20px;">
+            <a href="{% url 'article_detail' article.pk %}" class="retro-link">
+                <div class="retro-article-header">
+                    <h2 class="retro-text-large">{{ post.title }}</h2>
+                    <span class="retro-text-small">⏱ {{ post.created_at|timesince }} ago</span>
+                </div>
+                {% if post.content %}
+                <p class="retro-text">
+                    {{ post.content|truncatewords:30 }}
+                </p>
+                {% endif %}
+                <div class="retro-text-small">
+                    <span>📅 {{ post.created_at|date:"d/m/Y" }}</span>
+                    <span>👾 {{ post.author.username }}</span>
+                </div>
+            </a>
+            <div class="pixel-corners"></div>
+        </article>
+        {% empty %}
+        <div class="retro-screen text-center">
+            <p class="retro-text-large">No articles yet!</p>
+            <p class="retro-text">Be the first to write something awesome</p>
+            <a href="{% url 'article_create' %}" class="retro-btn">Create First Article</a>
+            <div class="pixel-corners"></div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
