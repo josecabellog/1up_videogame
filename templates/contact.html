@@ -3,6 +3,229 @@
 {% load static %}
 
 {% block content %}
-    <h1 class="retro-title">Contact us</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, non iure nemo sapiente fuga hic repellat id dignissimos exercitationem inventore architecto molestiae ad laudantium tempore, incidunt quis repudiandae nihil temporibus!</p>
+
+<style>
+
+    /* Estilos generales */
+    .contact-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 2rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        background-color: #1a1a2e;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Títulos */
+    .retro-title {
+        font-size: 3rem;
+
+        text-align: center;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, #ff8a00, #e52e71);
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        font-family: 'Press Start 2P', cursive;
+        color: #f700ff;
+        text-shadow: 
+        4px 4px 0px rgba(246, 255, 0, 0.914), /* Sombra magenta */
+        4px 4px 0px rgba(0, 0, 0, 0.2); /* Sombra negra secundaria */
+        position: relative; /* Opcional: para ajustar z-index si es necesario */
+        z-index: 1; /* Asegura que el texto esté sobre la sombra */
+    }
+
+    .contact-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: #b8b8b8;
+    }
+
+    .contact-tagline {
+        text-align: center;
+        font-style: italic;
+        margin-bottom: 3rem;
+        color: #4cc9f0;
+    }
+
+    .contact-info-title {
+        text-align: center;
+        margin: 2rem 0;
+        font-size: 2rem;
+        color: #f72585;
+    }
+
+    /* Contenedor de los cuadros de contacto */
+    .contact-boxes {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    /* Estilos generales de los cuadros */
+    .contact-box {
+        flex: 1;
+        min-width: 250px;
+        max-width: 300px;
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        background-color: #16213e;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-box:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Iconos */
+    .contact-icon {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Estilos específicos para cada cuadro */
+    .whatsapp-box {
+        border-top: 5px solid #25D366;
+    }
+
+    .whatsapp-box .contact-icon {
+        color: #25D366;
+    }
+
+    .email-box {
+        border-top: 5px solid #D44638;
+    }
+
+    .email-box .contact-icon {
+        color: #D44638;
+    }
+
+    .instagram-box {
+        border-top: 5px solid #E1306C;
+    }
+
+    .instagram-box .contact-icon {
+        color: #E1306C;
+    }
+
+    /* Textos dentro de los cuadros */
+    .contact-method {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #fff;
+    }
+
+    .contact-details {
+        color: #b8b8b8;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Botones */
+    .contact-button {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        background-color: transparent;
+        color: #fff;
+        border: 2px solid currentColor;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+
+    .whatsapp-box .contact-button {
+        color: #25D366;
+    }
+
+    .email-box .contact-button {
+        color: #D44638;
+    }
+
+    .instagram-box .contact-button {
+        color: #E1306C;
+    }
+
+    .contact-button:hover {
+        background-color: currentColor;
+        color: #fff;
+        transform: scale(1.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .contact-boxes {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .contact-box {
+            width: 80%;
+        }
+        
+        .retro-title {
+            font-size: 2rem;
+        }
+    }
+
+</style>
+
+    <div class="contact-container">
+        <h1 class="retro-title">Contact us</h1>
+        <p class="contact-subtitle">We are here to help you and answer any questions.</p>
+        <h2 class="contact-tagline">Let's take your gaming experience to the next level!</h2>
+
+        <h2 class="contact-info-title">Contact information</h2>
+
+
+
+            <!-- Cuadro de la informacion de WHATSAPP -->
+
+        <div class="contact-boxes">
+            <div class="contact-box whatsapp-box">
+                <div class="contact-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <img width="60px" src="{% static 'images/whatsapp icono.svg'%}" alt="Whatsapp image">
+                <h3 class="contact-method">WhatsApp</h3>
+                <p class="contact-details">Chat with us instantly</p>
+                <a href="https://wa.me/tunumerodetelefono" class="contact-button">Message Us</a>
+            </div>
+
+
+
+            <!-- Cuadro de la informacion del GMAIL -->
+
+            <div class="contact-box email-box">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <img width="60px" src="{% static 'images/gmail icono.svg'%}" alt="Gmail image">
+                <h3 class="contact-method">Email</h3>
+                <p class="contact-details">Send us your questions</p>
+                <a href="mailto:tucorreo@gmail.com" class="contact-button">Email Us</a>
+            </div>
+
+
+
+            <!-- Cuadro de la informacion del INSTAGRAM -->
+
+            <div class="contact-box instagram-box">
+                <div class="contact-icon">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <img width="60px" src="{% static 'images/instagram icono.svg'%}" alt="Instagram image">
+                <h3 class="contact-method">Instagram </h3>
+                <p class="contact-details">Follow and DM us</p>
+                <a href="https://instagram.com/tucuenta" class="contact-button">Follow Us</a>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
