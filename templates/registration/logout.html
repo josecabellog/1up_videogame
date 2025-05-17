@@ -1,35 +1,40 @@
-
 {% extends "index.html" %}
 {% load static %}
 
 {% block content %}
 <div class="retro-screen" style="max-width: 500px; margin: 2rem auto;">
-    <h2 class="retro-title" style="color: #00ffff; text-shadow: 3px 3px 0 #6a0dad;">PLAYER LOGIN</h2>
+    <h2 class="retro-title" style="color: #ff00ff; text-shadow: 3px 3px 0 #6a0dad;">GAME SESSION</h2>
     
-    <form method="post" class="pixel-form">
+    <div class="pixel-message-box" style="border: 3px solid #00ffff; padding: 1.5rem; margin: 1.5rem 0;">
+        <p class="retro-text" style="color: #00ff00; text-align: center; font-size: 0.8rem;">
+            WARNING: YOUR ADVENTURE WILL BE PAUSED
+        </p>
+    </div>
+    
+    <form method="post" action="{% url 'logout' %}" class="pixel-form">
         {% csrf_token %}
         
-        <div class="pixel-input-group">
-            <label class="pixel-label">USERNAME:</label>
-            <input type="text" name="username" class="pixel-input" required>
-            <div class="pixel-corners-sm"></div>
+        <div class="pixel-input-group" style="text-align: center;">
+            <p class="pixel-label" style="color: #ffff00;">CURRENT PLAYER:</p>
+            <p class="pixel-text" style="color: #00ffff; font-size: 1rem; margin: 0.5rem 0 1.5rem;">{{ user.username|upper }}</p>
         </div>
         
-        <div class="pixel-input-group">
-            <label class="pixel-label">PASSWORD:</label>
-            <input type="password" name="password" class="pixel-input" required>
-            <div class="pixel-corners-sm"></div>
+        <div class="button-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <button type="submit" class="retro-btn" style="background: #ff0000;">
+                <span class="pixel-text">CONFIRM LOGOUT</span>
+            </button>
+            
+            <a href="{% url 'home' %}" class="retro-btn" style="background: #00aa00; text-decoration: none; text-align: center;">
+                <span class="pixel-text">CANCEL</span>
+            </a>
         </div>
-        
-        <button type="submit" class="retro-btn" style="margin-top: 1.5rem;">
-            <span class="pixel-text">START GAME</span>
-        </button>
     </form>
     
     <div class="pixel-divider" style="margin: 2rem 0;"></div>
     
     <p class="retro-text" style="text-align: center;">
-        NEW PLAYER? <a href="{% url 'register' %}" class="pixel-link">CREATE ACCOUNT</a>
+        <span style="color: #ff00ff;">SESSION TIME:</span> 
+        <span style="color: #00ffff;">{{ user.last_login|date:"H:i" }}</span>
     </p>
     
     <div class="pixel-corners"></div>
@@ -40,6 +45,11 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+    }
+    
+    .pixel-message-box {
+        background: rgba(34, 34, 34, 0.7);
+        box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
     }
     
     .pixel-input-group {
@@ -55,20 +65,9 @@
         text-shadow: 2px 2px 0 #000;
     }
     
-    .pixel-input {
-        width: 100%;
-        padding: 0.8rem;
-        background: #222;
-        border: 3px solid #6a0dad;
-        color: #00ff00;
+    .pixel-text {
         font-family: 'Courier New', monospace;
-        outline: none;
-        transition: all 0.3s;
-    }
-    
-    .pixel-input:focus {
-        border-color: #00ffff;
-        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        color: #00ff00;
     }
     
     .retro-btn {
@@ -77,29 +76,29 @@
         border: none;
         padding: 1rem;
         font-family: 'Press Start 2P', cursive;
-        font-size: 0.9rem;
+        font-size: 0.7rem;
         cursor: pointer;
         position: relative;
         overflow: hidden;
         transition: all 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     .retro-btn:hover {
-        background: #ff00ff;
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(255, 0, 255, 0.4);
+        box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
     }
     
-    .pixel-link {
-        color: #00ffff;
-        text-decoration: none;
-        border-bottom: 2px dashed #ff00ff;
-        transition: all 0.3s;
+    .retro-btn[style*="background: #ff0000"]:hover {
+        background: #ff5555 !important;
+        box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
     }
     
-    .pixel-link:hover {
-        color: #ff00ff;
-        text-shadow: 0 0 5px #00ffff;
+    .retro-btn[style*="background: #00aa00"]:hover {
+        background: #00ff55 !important;
+        box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
     }
     
     .pixel-divider {
