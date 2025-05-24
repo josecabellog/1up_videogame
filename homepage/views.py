@@ -14,3 +14,6 @@ class CategoriesPageView(TemplateView):
 
 class ContactPageView(TemplateView):
     template_name= 'contact.html'
+
+class GamePageView(TemplateView):
+    template_name = 'game.html'
