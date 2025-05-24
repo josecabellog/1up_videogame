@@ -1,68 +1,64 @@
-
 {% extends "index.html" %}
-{% include 'includes/navbar.html' %}
 {% load static %}
 
-
+{% block content %}
 <style>
-    /* Add these to your existing index.css */
+    /* Scoped CSS only for this template */
+    .retro-articles {
+        max-width: 800px;
+        margin: 80px auto 40px; /* Added top margin for navbar */
+        padding: 0 20px;
+    }
 
-.retro-articles {
-    max-width: 800px;
-    margin: 0 auto;
-}
+    .retro-article-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 
-.retro-article-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
+    .retro-text-large {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 16px;
+        color: #00ff00;
+        margin: 0;
+    }
 
-.retro-text-large {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 16px;
-    color: #00ff00;
-    margin: 0;
-}
+    .retro-text-small {
+        font-family: 'Press Start 2P', cursive;
+        font-size: 10px;
+        color: #00ff00;
+        margin: 0;
+    }
 
-.retro-text-small {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
-    color: #00ff00;
-    margin: 0;
-}
+    .retro-link {
+        text-decoration: none;
+        display: block;
+        padding: 20px;
+    }
 
-.retro-link {
-    text-decoration: none;
-    display: block;
-    padding: 20px;
-}
+    .retro-btn {
+        font-family: 'Press Start 2P', cursive;
+        background-color: #333;
+        color: #00ff00;
+        border: 2px solid #00ff00;
+        padding: 10px 15px;
+        font-size: 12px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+    }
 
-.retro-btn {
-    font-family: 'Press Start 2P', cursive;
-    background-color: #333;
-    color: #00ff00;
-    border: 2px solid #00ff00;
-    padding: 10px 15px;
-    font-size: 12px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-}
+    .retro-btn:hover {
+        background-color: #00ff00;
+        color: #000;
+    }
 
-.retro-btn:hover {
-    background-color: #00ff00;
-    color: #000;
-}
-
-.hover-glow:hover {
-    box-shadow: 0 0 15px #00ff00;
-}
+    .hover-glow:hover {
+        box-shadow: 0 0 15px #00ff00;
+    }
 </style>
 
-
-{% block content %}
 <div class="retro-container">
     <header class="retro-screen mb-8" style="position: relative;">
         <h1 class="retro-title">Team Articles</h1>
@@ -75,7 +71,7 @@
     <div class="retro-articles">
         {% for post in posts %}
         <article class="retro-screen hover-glow" style="margin-bottom: 20px;">
-            <a href="{% url 'article_detail' article.pk %}" class="retro-link">
+            <a href="{% url 'article_detail' post.pk %}" class="retro-link">
                 <div class="retro-article-header">
                     <h2 class="retro-text-large">{{ post.title }}</h2>
                     <span class="retro-text-small">⏱ {{ post.created_at|timesince }} ago</span>

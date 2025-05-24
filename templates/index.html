@@ -7,8 +7,123 @@
     <title>1UP videogames</title>
     <link rel="icon" href="{% static 'images/1.png' %}">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <!-- Fuente retro gaming -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Font Awesome for email icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== CENTERED LAYOUT ===== */
+        .centered-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== COMPACT GAME CARDS ===== */
+        .featured-games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem auto;
+            width: 90%;
+        }
+
+        .game-card {
+            background: #000;
+            border: 3px solid #ff1a1a;
+            padding: 0.8rem;
+            text-align: center;
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .game-card:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* ===== COMPACT NEWSLETTER ===== */
+        .newsletter {
+            background: #0f0f23;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            width: 80%;
+            text-align: center;
+            position: relative;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .newsletter input {
+            padding: 8px 12px;
+            width: 60%;
+            background: #000;
+            color: #0f0;
+            border: 2px solid #ff1a1a;
+        }
+
+        .newsletter button {
+            background: #ff1a1a;
+            color: #ffcc00;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+
+        .email-icon {
+            color: #ff1a1a;
+            margin-right: 5px;
+        }
+
+        /* ===== ENHANCED REVIEWS ===== */
+        .testimonials {
+            text-align: center;
+            margin: 2rem auto;
+            width: 90%;
+        }
+
+        .reviews-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .review {
+            background: #0f0f23;
+            padding: 1rem;
+            border: 2px solid #555;
+            width: 250px;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .reviewer img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #ff1a1a;
+        }
+
+        .reviewer-name {
+            color: #ffcc00;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 
 <body class="retro-theme">
@@ -16,12 +131,73 @@
 
     <main class="retro-container">
         {% block content %}
-        <!-- Default content if not overridden -->
-        <h1 class="retro-title">Welcome to the ultimate <br> gaming experience</h1>
-        <div class="retro-screen">
-            <p class="retro-text">Text here</p>
-            <div class="pixel-corners"></div>
-        </div>
+        <!-- Hero Section -->
+        <section class="hero centered-container">
+            <h1 class="retro-title">Welcome to the ultimate gaming experience</h1>
+            <div class="retro-screen">
+                <p class="retro-text">Discover rare classics and newest releases</p>
+                <div class="pixel-corners"></div>
+            </div>
+        </section>
+
+        <!-- Featured Games -->
+        <section class="featured-games">
+            <div class="game-card">
+                <img src="{% static 'images/megaman.png' %}" alt="Game 1">
+                <h3>Megaman saga X</h3>
+                <p>The legendary Blue Bomber evolves in this action-packed series! Mega Man X brings intense platforming, weapon-stealing mechanics, and futuristic upgrades to Nintendo consoles. Battle through challenging levels, defeat Maverick bosses, and acquire their powers in this iconic Capcom franchise that defined 16-bit action gaming</p>
+                <a href="">Dowload Now</a>
+            </div>
+            <div class="game-card">
+                <img src="{% static 'images/sonic.png' %}" alt="Game 2">
+                <h3>SONIC THE HEDGEHOG</h3>
+                <p>Sega's blue blur found a new home on Nintendo systems! Experience lightning-fast platforming across classic 2D and modern 3D adventures. From the Game Boy Advance ports to exclusive titles like Sonic Lost World, Nintendo players enjoy the full spectrum of loop-de-loop speed runs and chaotic multiplayer mayhem.</p>
+            </div>
+            <div class="game-card">
+                <img src="{% static 'images/doom.png' %}" alt="Game 3">
+                <h3>DOOM</h3>
+                <p>The granddaddy of first-person shooters! DOOM's brutal demon-slaying combat revolutionized gaming. On Nintendo systems, experience optimized versions of classic shooters like DOOM (1993), DOOM 64 (the cult-favorite exclusive), and the modern DOOM Eternal - proving even hellspawn can't escape portable gaming.</p>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter centered-container">
+            <h2>JOIN OUR NEWSLETTER</h2>
+            <p>Get exclusive deals and early access!</p>
+            <form class="newsletter-form">
+                <i class="fas fa-envelope email-icon"></i>
+                <input type="email" placeholder="Your email" required>
+                <button type="submit">SUBSCRIBE</button>
+            </form>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials centered-container">
+            <h2>PLAYER REVIEWS</h2>
+            <div class="reviews-container">
+                <div class="review">
+                    <p>"This site helped me find rare retro gems!"</p>
+                    <div class="reviewer">
+                        <img src="{% static 'images/review1.png' %}" alt="MarioFan88">
+                        <span class="reviewer-name">MarioFan88</span>
+                    </div>
+                </div>
+                <div class="review">
+                    <p>"Best prices for collector's editions!"</p>
+                    <div class="reviewer">
+                        <img src="{% static 'images/review2.png' %}" alt="ZeldaMaster">
+                        <span class="reviewer-name">ZeldaMaster</span>
+                    </div>
+                </div>
+                <div class="review">
+                    <p>"Fast delivery and great customer service."</p>
+                    <div class="reviewer">
+                        <img src="{% static 'images/review3.png' %}" alt="SonicSpeed">
+                        <span class="reviewer-name">SonicSpeed</span>
+                    </div>
+                </div>
+            </div>
+        </section>
         {% endblock %}
     </main>
 </body>

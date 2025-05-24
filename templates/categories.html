@@ -3,96 +3,86 @@
 {% block content %}
 
 <style>
-  /* Contenedor principal (sin scroll) */
-  .main-container {
+  /* Main container - centers everything */
+  .categories-container {
     display: flex;
-    width: 90vw;
-    height: 80vh; /* Ocupa toda la pantalla */
-    font-family: 'Courier New', monospace;
+    flex-direction: column;
+    align-items: center; /* ← This centers horizontally */
+    width: 100%;
+    min-height: 80vh;
+    padding: 2rem 0;
     background-color: #0f0f23;
+    font-family: 'Courier New', monospace;
     color: #e0e0e0;
-    overflow: hidden; /* Desactiva el scroll global */
   }
 
-  /* Panel izquierdo (sin scroll) */
-  .left-panel {
-    width: 300px;
-    background-color: #000;
-    padding: 2rem 1rem;
-    border-right: 4px solid #ff1a1a;
-    overflow: hidden; /* Evita scroll interno */
-  }
-
-  /* Panel derecho (sin scroll, contenido ajustado) */
-  .right-panel {
-    flex: 1;
+  /* Search box - now properly centered */
+  .search-box {
+    width: 80%;
+    max-width: 500px;
+    background: #000;
+    border: 8px solid #555;
     padding: 2rem;
-    overflow: hidden; /* Desactiva scroll */
+    margin: 0 auto 2rem; /* ← Centers the box */
+    text-align: center; /* ← Centers text inside */
+  }
+
+  /* Game grid - centered below search */
+  .game-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-    align-content: start;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; /* ← Centers the grid */
   }
 
-  /* Ajuste para evitar desbordamiento en el panel derecho */
+  /* Game card styling */
   .game-card {
-    background-color: #000;
+    background: #000;
     border: 4px solid #555;
     padding: 15px;
-    color: #0f0;
-    font-size: 0.8rem;
-    font-family: 'Courier New', monospace;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s;
+    text-align: center;
   }
 </style>
 
-<div class="main-container">
-  <!-- Panel izquierdo (formulario) -->
-  <div class="left-panel">
-    <div class="retro-screen" style="background-color: #000; border: 8px solid #555; border-radius: 5px; padding: 1.5rem; position: relative; box-shadow: 0 0 0 8px #333;">
-      <div class="pixel-corners" style="position: absolute; width: 16px; height: 16px; background-color: #ff1a1a;"></div>
-      <h2 class="retro-title" style="font-family: 'Press Start 2P', cursive; color: #ff1a1a; text-shadow: 4px 4px 0px #ffcc00; text-align: center; font-size: 1.2rem; margin-bottom: 1.5rem;">BUSCAR JUEGOS</h2>
-
-      <form id="categorias-videojuegos" class="retro-text" style="color: #0f0; font-size: 0.9rem;">
-        <label for="categoria">Selecciona una categoría:</label><br>
-        <select name="categoria" id="categoria" class="retro-select" style="background-color: #0f0f23; color: #0f0; border: 2px solid #ff1a1a; padding: 8px; font-size: 0.9rem; width: 100%; margin-top: 10px;">
-          <option value="">-- Todas las categorías --</option>
-          <option value="accion">ACCIÓN</option>
-          <option value="aventura">AVENTURA</option>
-          <option value="deportes">DEPORTES</option>
-          <option value="carreras">CARRERAS</option>
-          <option value="estrategia">ESTRATEGIA</option>
-          <option value="rol">RPG</option>
-          <option value="shooter">SHOOTER</option>
-          <option value="mmo">MMO</option>
-          <option value="indie">INDIE</option>
-          <option value="simulacion">SIMULACIÓN</option>
-          <option value="terror">TERROR</option>
-          <option value="plataformas">PLATAFORMAS</option>
-        </select>
-        <button type="submit" class="retro-button" style="background-color: #ff1a1a; color: #ffcc00; border: none; padding: 12px 24px; font-family: 'Press Start 2P', cursive; font-size: 0.7rem; cursor: pointer; text-transform: uppercase; transition: all 0.3s; width: 100%; margin-top: 15px;">
-          BUSCAR
-        </button>
-      </form>
-    </div>
+<div class="categories-container">
+  <!-- Centered search box -->
+  <div class="search-box">
+    <h2 style="font-family: 'Press Start 2P', cursive; color: #ff1a1a; margin-bottom: 1rem;">BUSCAR JUEGOS</h2>
+    <form>
+      <label for="categoria" style="display: block; margin-bottom: 10px;">Selecciona una categoría:</label>
+      <select id="categoria" style="width: 100%; padding: 8px; background: #0f0f23; color: #0f0; border: 2px solid #ff1a1a;">
+        <option value="">-- Todas las categorías --</option>
+        <option value="accion">ACCIÓN</option>
+        <!-- Add other options here -->
+      </select>
+      <button type="submit" style="margin-top: 15px; width: 100%; padding: 10px; background: #ff1a1a; color: #ffcc00; border: none; font-family: 'Press Start 2P', cursive;">BUSCAR</button>
+    </form>
   </div>
 
-  <!-- Panel derecho (juegos) -->
-  <div class="right-panel">
+  <!-- Centered game grid -->
+  <div class="game-grid">
     <div class="game-card">
-      <div class="game-title" style="font-family: 'Press Start 2P', cursive; font-size: 0.9rem; color: #ffcc00; margin-bottom: 0.5rem;">CYBERPUNK 2077</div>
-      <div class="game-description" style="color: #aaa; font-size: 0.75rem; margin-top: auto;">Un RPG futurista en Night City con mucha acción y drama.</div>
+      <h3 style="color: #ffcc00; font-family: 'Press Start 2P', cursive;">CYBERPUNK 2077</h3>
+      <p style="color: #aaa;">Un RPG futurista en Night City con mucha acción y drama.</p>
     </div>
+
     <div class="game-card">
-      <div class="game-title" style="font-family: 'Press Start 2P', cursive; font-size: 0.9rem; color: #ffcc00; margin-bottom: 0.5rem;">METROID PRIME</div>
-      <div class="game-description" style="color: #aaa; font-size: 0.75rem; margin-top: auto;">Explora mundos alienígenas con Samus en esta aventura icónica.</div>
+      <h3 style="color: #ffcc00; font-family: 'Press Start 2P', cursive;">CYBERPUNK 2077</h3>
+      <p style="color: #aaa;">Un RPG futurista en Night City con mucha acción y drama.</p>
     </div>
+
     <div class="game-card">
-      <div class="game-title" style="font-family: 'Press Start 2P', cursive; font-size: 0.9rem; color: #ffcc00; margin-bottom: 0.5rem;">DEAD SPACE</div>
-      <div class="game-description" style="color: #aaa; font-size: 0.75rem; margin-top: auto;">Terror espacial con necromorfos que acechan en cada esquina.</div>
+      <h3 style="color: #ffcc00; font-family: 'Press Start 2P', cursive;">CYBERPUNK 2077</h3>
+      <p style="color: #aaa;">Un RPG futurista en Night City con mucha acción y drama.</p>
     </div>
+
+    <div class="game-card">
+      <h3 style="color: #ffcc00; font-family: 'Press Start 2P', cursive;">CYBERPUNK 2077</h3>
+      <p style="color: #aaa;">Un RPG futurista en Night City con mucha acción y drama.</p>
+    </div>
+    <!-- Add other game cards here -->
   </div>
 </div>
 
