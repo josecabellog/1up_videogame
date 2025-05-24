@@ -3,8 +3,14 @@
 
 {% block content %}
 <style>
-    /* Scoped CSS only for this template */
-    .retro-articles {
+     /* Scoped CSS only for this template */
+        .retro-articles {
+        display: grid; 
+        display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem auto;
+            width: 90%;
         max-width: 800px;
         margin: 80px auto 40px; /* Added top margin for navbar */
         padding: 0 20px;
@@ -59,43 +65,30 @@
     }
 </style>
 
-<div class="retro-container">
-    <header class="retro-screen mb-8" style="position: relative;">
-        <h1 class="retro-title">Team Articles</h1>
-        <div class="pixel-corners"></div>
-        <a href="{% url 'article_create' %}" class="retro-btn" style="position: absolute; right: 20px; top: 20px;">
-            + New Article
+<div class="retro-articles">
+    {% for article in object_list %}  <!-- Cambiado a object_list (ListView) -->
+    <article class="retro-screen hover-glow" style="margin-bottom: 20px;">
+        <a href="{% url 'article_detail' article.pk %}" class="retro-link">
+            <div class="retro-article-header">
+                <h2 class="retro-text-large">{{ article.title }}</h2>
+                <span class="retro-text-small">⏱ {{ article.date_published|timesince }} ago</span>  <!-- Cambiado a date_published -->
+            </div>
+            
+            {% if article.image %}  <!-- Muestra imagen si existe -->
+            <div class="article-image" style="margin: 10px 0;">
+                <img src="{{ article.image.url }}" alt="{{ article.game_reviewed }}" style="max-width: 100%; height: auto;">
+            </div>
+            {% endif %}
         </a>
-    </header>
-
-    <div class="retro-articles">
-        {% for post in posts %}
-        <article class="retro-screen hover-glow" style="margin-bottom: 20px;">
-            <a href="{% url 'article_detail' post.pk %}" class="retro-link">
-                <div class="retro-article-header">
-                    <h2 class="retro-text-large">{{ post.title }}</h2>
-                    <span class="retro-text-small">⏱ {{ post.created_at|timesince }} ago</span>
-                </div>
-                {% if post.content %}
-                <p class="retro-text">
-                    {{ post.content|truncatewords:30 }}
-                </p>
-                {% endif %}
-                <div class="retro-text-small">
-                    <span>📅 {{ post.created_at|date:"d/m/Y" }}</span>
-                    <span>👾 {{ post.author.username }}</span>
-                </div>
-            </a>
-            <div class="pixel-corners"></div>
-        </article>
-        {% empty %}
-        <div class="retro-screen text-center">
-            <p class="retro-text-large">No articles yet!</p>
-            <p class="retro-text">Be the first to write something awesome</p>
-            <a href="{% url 'article_create' %}" class="retro-btn">Create First Article</a>
-            <div class="pixel-corners"></div>
-        </div>
-        {% endfor %}
+        <div class="pixel-corners"></div>
+    </article>
+    {% empty %}
+    <div class="retro-screen text-center">
+        <p class="retro-text-large">No articles yet!</p>
+        <p class="retro-text">Be the first to write something awesome</p>
+        <a href="{% url 'article_create' %}" class="retro-btn">Create First Article</a>  <!-- Añadido URL correcta -->
+        <div class="pixel-corners"></div>
     </div>
+    {% endfor %}
 </div>
 {% endblock %}

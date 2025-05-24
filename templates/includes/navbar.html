@@ -120,10 +120,11 @@
         <img src="{% static 'images/2.png' %}" alt="logo">
     </div>
     <ul>
-        <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
-        <li><a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">About</a></li>
-        <li><a href="{% url 'categories' %}" class="{% if request.path == '/categories/' %}active{% endif %}">Categories</a></li>
-        <li><a href="{% url 'contact' %}" class="{% if request.path == '/contact/' %}active{% endif %}">Contact us</a></li>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'article_list' %}">Team articles</a></li>
+        <li><a href="{% url 'categories' %}">Categories</a></li>
+        <li><a href="{% url 'contact' %}">Contact us</a></li>
         
         {% if user.is_authenticated %}
             <li><span class="user-greeting">Hi, {{ user.username }}!</span></li>
